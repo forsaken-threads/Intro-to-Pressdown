@@ -1,0 +1,11 @@
+{
+    "book-toc": false,
+    "constants": {
+        "cliPress": "{@s-a CLI Press s@}",
+        "pressDown": "{@s-a Pressdown s@}"
+    },
+    "document-themes" : "themes",
+    "ignore" : ["themes"],
+    "simple-root-cover" : false,
+    "theme" : "local"
+}
