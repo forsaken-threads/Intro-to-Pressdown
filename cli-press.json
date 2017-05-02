@@ -1,10 +1,12 @@
 {
-    "constants": {
+    "document-themes" : "themes",
+    "filename" : "intro-to-pressdown",
+    "ignore" : ["themes"],
+    "press-variables": {
         "cliPress": "{@s-a CLI Press s@}",
         "pressDown": "{@s-a Pressdown s@}"
     },
-    "document-themes" : "themes",
-    "ignore" : ["themes"],
     "simple-root-cover" : true,
-    "theme" : "local"
+    "theme" : "local",
+    "title" : "Intro to {@s-a Pressdown s@}"
 }

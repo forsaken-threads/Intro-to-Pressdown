@@ -1,20 +1,63 @@
+## List of Tables
+
+t{}(pqd)
+t{}(pqad)
+
+{break}
+
 ## Introduction to *Pressdown*
 
 {{ pressDown }} is an extension of Markdown Extra that adds special processing directives to handle the specific needs of documentation tasks.  Some of the directives help reduce markup, and others allow for easily escaping Twig, Markdown, and {{ pressDown }} directives.  Most of all, though, pq{ {{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left)
 
 ### Pull Quotes
 
-The first directive we'll take a look at is the Pull Quote Directive - `@pq{content}(placement)`.  If you want to bring attention to an important phrase or idea on a page, you can use a pull quote to highlight it.  They are often used to grab the reader and draw them in to a specific section, to prevent them from flipping past.  As you may have guessed, `content` should be the word or phrase you want to use, and `placement` is either 'right' or 'left' and optionally the name of an anchor to instruct {{ pressDown }} how and where to float it.  Simply use the Pull Quote Directive wherever the phrase would normally occur in the flow of the document.  It will appear as normal in that location and also appear floated either to the left or the right.  As an example, here's the markup used to display the pull quotes on this page.
+The first directive we'll take a look at is the Pull Quote Directive - `@pq{content}(placement)`.  If you want to bring attention to an important phrase or idea on a page, you can use a pull quote to highlight it.  They are often used to grab the reader and draw them in to a specific section, to prevent them from flipping past.
+
+As you may have guessed, `content` should be the word or phrase you want to use, and `placement` is either 'right' or 'left' and optionally the name of an anchor to instruct {{ pressDown }} how and where to float it.  Simply use the Pull Quote Directive wherever the phrase would normally occur in the flow of the document.  It will appear as normal in that location and also appear floated either to the left or the right.  As an example, here's the markup used to display the pull quotes on this page.
 
 ```none
-@pq{{ '{{' }}{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left)
+@pq{ {@{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left)
 
-@pq{{ '{{' }}{ pressDown }} has an even better way to create figures and captions.}(right far-away)
+@pq{ {@{ pressDown }} has an even better way to create figures and captions.}(right far-away)
 ```
 
-In the example above, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  You'll find more information about it below.
+ pqa{far-away} In the example above, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  You'll find more information about it below.
 
-The first example on this page appears nearly in the same place as the original text.  What if you wanted to make it appear a bit further away?  In the `placement` section of the directive, add the name of a Pull Quote Anchor Directive.  The second pull quote on this page actually comes from a quote on the next one!  It is anchored with the following: `@pqa{far-away}` to the end of this paragraph. pqa{far-away}
+The first example on this page appears nearly in the same place as the original text.  What if you wanted to make it appear a bit further away?  In the `placement` section of the directive, add the name of a Pull Quote Anchor Directive.
+
+The second pull quote on this page actually comes from a quote on the next one!  It is anchored with the following: `@pqa{far-away}` to the above code block.
+
+table-3{
+    h:
+        3. Pull Quote - `@pq{content}(placement)`
+    h:
+        1. Piece
+        2. Use Pressdown
+        3. Description
+    r:
+        1. `content`
+        2. {f@check}
+        3. This is what you want to appear, as is, within the normal flow of the document.
+    r:
+        1. `placement`
+        2.
+        3. This is a combination of float direction and anchor name.  It can also be empty.  The Pull Quote is displayed as a styled `aside` tag.  It can float 'left' or 'right'.  The default is 'right' if no direction is given.  If an anchor name is provided it may only contain 'A-Za-z0-9_-'.  The `aside` will be placed immediately following the rendered pull quote `content`, or, if an anchor is provide, it will replace the Pull Quote Anchor in the document flow.
+        Examples: (left), (right funny-quote), (obama-quote), ()
+}#pqd(Summary of the Pull Quote Directive)
+
+table-3{
+    h:
+        3. Pull Quote Anchor - `@pqa{name}`
+    h:
+        1. Piece
+        2. Use Pressdown
+        3. Description
+    r:
+        1. `name`
+        2.
+        3. The anchor name used in a Pull Quote Directive elsewhere.  The styled `aside` will be inserted into the document flow at the position of the directive.
+}#pqad(Summary of the Pull Quote Anchor Directive)
+
 
 ### The Classed Block Directive
 
@@ -51,7 +94,7 @@ You can nest classed blocks and use Markdown Extra within them! Below is how I c
 
   Then you can use `.z` in your CSS files to do something cool.
 f@}
-@{@fc- Figure 1: The Classed Block Directive `{@x-c .+ x@}` fc@}
+@{@fc- Figure 1: The Classed Block Directive `{@tag-class .+ tag@}` fc@}
 ```
 
 After Twig, {{ pressDown }}, and Markdown Extra parsing, the final html markup looks like this:
@@ -94,7 +137,7 @@ To see the directive in action, here's an example of how to create *Figure 1* us
   <span class="z">I need to be a span with "z" class</span>
   @```
 
-  Then you can use `.z` in your CSS files to do something cool. fig=}(The Classed Block Directive `@{@x-c .+ x@}`)
+  Then you can use `.z` in your CSS files to do something cool. fig=}(The Classed Block Directive `@{@tag-class .+ tag@}`)
 ```
 
 And here's that {{ pressDown }} in action:
@@ -110,6 +153,91 @@ And here's that {{ pressDown }} in action:
   <span class="z">I need to be a span with "z" class</span>
   ```
 
-  Then you can use `.z` in your CSS files to do something cool. fig=}(The Classed Block Directive `@{@x-c .+ x@}`)
+  Then you can use `.z` in your CSS files to do something cool. fig=}(The Classed Block Directive `@{@tag-class .+ tag@}`)
 
 Now suppose you want to refer to this figure later or earlier in the document. {{ pressDown }} can create a link for you that will automatically reference the proper number of the figure, regardless of where, or what order, it was defined. Just use the name you provided in the Figure Directive and {{ pressDown }} will handle the rest. This magic is accomplished with the Figure Link Directive: f{link text}(name) . The `name` must match the one in the Figure Directive. The `link text`, if defined, will be appended to the default link text of "Figure X". For example `@f{Classed Block Directive}(CBD)`, would create a link that says "Figure 1: Classed Block Directive". If it were empty, the link would instead simply say "Figure 1".
+
+{break}
+
+### Pressdown markup
+
+```none
+@table-3{
+    h:
+        1. Header 1
+        2. Header 2
+        3. Header 3
+    r:
+        1. Row 1 Col 1
+        2. Row 1 Col 2
+        3. Row 1 Col 3
+    r:
+        1. Row 2 Col 1
+        3. Row 2 Cols 2 & 3
+    r:
+        2. Row 3 Cols 1 & 2
+        3. Row 3 Col 3
+    r:
+        3. Row 4 Cols 1 & 2 & 3
+    f:
+        1. Footer 1
+        2. Footer 2
+        3. Footer 3
+}(The Table Directive - `table-cols{content}(caption)`)
+```
+
+### Becomes HTML
+
+```html
+table-3{
+    h:
+        1. Header 1
+        2. Header 2
+        3. Header 3
+    r:
+        1. Row 1 Col 1
+        2. Row 1 Col 2
+        3. Row 1 Col 3
+    r:
+        1. Row 2 Col 1
+        3. Row 2 Cols 2 & 3
+    r:
+        2. Row 3 Cols 1 & 2
+        3. Row 3 Col 3
+    r:
+        3. Row 4 Cols 1 & 2 & 3
+    f:
+        1. Footer 1
+        2. Footer 2
+        3. Footer 3
+}(The Table Directive - `table-cols{content}(caption)`)
+```
+
+{break}
+
+### Which renders
+
+table-3{
+    h:
+        1. Header 1
+        2. Header 2
+        3. `Header 3`
+    r:
+        1. Row 1 Col 1
+        2. Row 1 Col 2
+        3. Row 1 Col 3
+    r:
+        1. Row 2 Col 1
+        3. Row 2 Cols 2 & 3
+    r:
+        2. Row 3 Cols 1 & 2
+        3. Row 3 Col 3
+    r:
+        3. Row 4 Cols 1 & 2 & 3
+    f:
+        1. Footer 1
+        2. Footer 2
+        3. Footer 3
+}(The Table Directive - `table-cols{content}(caption)`)
+
+f{link test}(CBD)
