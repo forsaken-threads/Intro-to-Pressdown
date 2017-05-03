@@ -1,0 +1,72 @@
+## Summary of {{ pressDown }} ^Directives^
+
+table-3{
+    h:
+        1. Directive Name
+        2. Directive Format
+        3. Purpose
+    r:
+        3. **Pre Directives**
+    r:
+        1. Keyword One
+        2. @^content^
+        3. Special ^emphasis^
+    r:
+        1. Keyword Two
+        2. @^^content^^
+        3. Special ^^emphasis^^
+    r:
+        1. Keyword Three
+        2. @^^^content^^^
+        3. Special ^^^emphasis^^^
+    r:
+        1. Font Awesome
+        2. @{f@classes}
+        3. Font Awesome icon
+    r:
+        1. Page Break
+        2. @{break}
+        3. Force page break
+    r:
+        3. **Block Directives**
+    r:
+        1. Pull Quote
+        2. @pq{content}(placement)
+        3. Aside with quoted phrase
+    r:
+        1. Table
+        2. @table-cols{content}(caption)#anchor-name
+        3. Simple table with caption
+    r:
+        1. Figure
+        2. @figure{content}(caption)#anchor-name
+        3. Inset figure with caption
+    r:
+        1. Classed Block^
+        2. @{@tag-class content tag@}
+        3. HTML block with tag and class
+    r:
+        3. **Post Directives**
+    r:
+        1. Figure Link
+        2. @f{content}(link)
+        3. Link to named figure
+    r:
+        1. Pull Quote Anchor
+        2. @pqa{name}
+        3. Location for pull quote defined elsewhere
+    r:
+        1. Table Link
+        2. @t{content}(link)
+        3. Link to named table
+    r:
+        3. **Final Directives**
+    r:
+        1. Escaped Code Blocks
+        2. {@c-pressdown {@s-pd-literal @``` s@} c@}
+        3. Prevents Markdown parsing
+    r:
+        1. Escaped Twig Expression
+        2. @{@{ expression }}
+        3. Prevents Twig parsing
+}({{ pressDown }} ^Directives^)#directives
