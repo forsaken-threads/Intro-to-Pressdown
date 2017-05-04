@@ -1,54 +1,93 @@
 ## Introduction to *Pressdown*
 
-{{ pressDown }} is an extension of Markdown Extra that adds special processing directives to handle the specific needs of documentation tasks.  Some of the directives help reduce markup, and others allow for easily escaping Twig, Markdown, and {{ pressDown }} directives.  Most of all, though, pq{ {{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left)
+{{ pressDown }} is an extension of Markdown Extra that adds special processing directives to handle the specific needs of documentation tasks.  Some of the directives help reduce markup, and others allow for easily escaping Twig, Markdown, and {{ pressDown }} directives.  Most of all, though, pq{ {{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left beautiful)
+
+This document provides detailed information and samples for all available {{ pressDown }} directives.  You will see generalized versions of each directive as well as examples taken directly from the markup used to create this document.  To make these easier to understand, these directives will be processed through a syntax highlighter.  See f{ {{ pressDown }} Syntax Highlighting}(syntax) for information on how to make sense of them.
+
+figure{
+Here is the ^Figure Directive^ in an abstract version as well as in a real-world version:
+
+{@pre-prettyprintplain.pressdown
+
+@figure{content}(caption?)#anchor-name
+
+@figure{
+Look I can use \*Markdown\* in here
+
+Wow! I can use @@^Pressdown^, too!
+}(My caption can use \*Markdown\* and @@^Pressdown^)#anchor
+
+pre@}
+
+Each component of the directive will have a specific color that denotes how it is used.
+
+table-2{
+    r:
+        1: {@c-pressdown {@s-pd-directive Purple s@}(-p) c@}(-p)
+        2: Highlights the actual directive that lets {{ pressDown }} know how and what to parse.
+    r:
+        1: {@c-pressdown {@s-pd-literal Blue s@}(-p) c@}(-p)
+        2: A literal character.
+    r:
+        1: {@c-pressdown {@s-pd-content Off-white s@}(-p) c@}(-p)
+        2: Denotes content that can contain Markdown and Pressdown.
+    r:
+        1: {@c-pressdown {@s-pd-option Light yellow s@}(-p) c@}(-p)
+        2: Identifies options for the directive.
+}()#pressdown-syntax-highlighting
+
+Note that in abstracts of a directive a `?` signifies that the preceding component is optional.  So in the above, the `caption` component is optional, meaning the parentheses can be left empty.
+}({{ pressDown }} Syntax Highlighting)#syntax
 
 ### Pull Quotes
 
-The first directive we'll take a look at is the ^Pull Quote Directive^ - @pq{content}(placement).  If you want to bring attention to an important phrase or idea on a page, you can use a pull quote to highlight it.  They are often used to grab the reader and draw them in to a specific section, to prevent them from flipping past.
+The first directive we'll take a look at is the ^Pull Quote Directive^ - @pq{content}(float? anchor?).  If you want to bring attention to an important phrase or idea on a page, you can use a pull quote to highlight it.  They are often used to pq{grab the reader and draw them in}(left) to a specific section, to prevent them from flipping past.
 
-As you may have guessed, `content` should be the word or phrase you want to use, and `placement` is either 'right' or 'left' and optionally the name of an anchor to instruct {{ pressDown }} how and where to float it.  Simply use the ^Pull Quote Directive^ wherever the phrase would normally occur in the flow of the document.  It will appear as normal in that location and also appear floated either to the left or the right.  As an example, here's the markup used to display the pull quotes on this page.
+As you may have guessed, the component `content` should be the word or phrase you want to use.  The `float` option specifies which way the pull quote will float wherever it appears.  If not given, the default value is `right`.  The `anchor` option can be the link name of a ^Pull Quote Anchor Directive^ that indicates where in the document flow the pull quote should appear.  If it is not given, the pull quote will be anchored to wherever the original content is.
+
+To use the ^Pull Quote Directive^, simply enter it wherever the phrase would normally occur in the flow of the document.  The phrase will appear as normal in that location but also be displayed according to the `float` and `anchor` options.
+
+alert{In the example below, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  You'll find more information about it below.}(info-circle)
 
 {@pre-prettyprintplain
-@pq{ {@{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left)
 
-@pq{ {@{ pressDown }} has an even better way to create figures and captions.}(right far-away)
-pre@}(no-strip-p-tags)
+@pq{ {@{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(beautiful)
 
-pqa{far-away} In the example above, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  You'll find more information about it below.
-
-The first example on this page appears nearly in the same place as the original text.  What if you wanted to make it appear a bit further away?  In the `placement` section of the directive, add the name of a ^Pull Quote Anchor Directive^.
-
-The second pull quote on this page actually comes from a quote on the next one!  It is anchored with @pqa{far-away} to the above code block.
+pre@}()
 
 table-3{
     h:
-        3. Pull Quote - @pq{content}(placement)
+        3: Pull Quote - @pq{content}(placement)
     h:
-        1. Piece
-        2. Use Pressdown
-        3. Description
+        1: Component
+        2(no-word-wrap): Can Contain Pressdown
+        3: Description
+    c:
+        2: text-center
     r:
-        1. `content`
-        2. {f@check}
-        3. This is what you want to appear, as is, within the normal flow of the document.
+        1: `content`
+        2: {f@check green}
+        3: This is what you want to appear, as is, within the normal flow of the document.
     r:
-        1. `placement`
-        2.
-        3. This is a combination of float direction and anchor name.  It can also be empty.  The Pull Quote is displayed as a styled `aside` tag.  It can float ^^left^^ or ^^right^^.  The default is ^^right^^ if no direction is given.  If an anchor name is provided it may only contain ^^A-Za-z0-9_-^^.  The `aside` will be placed immediately following the rendered pull quote `content`, or, if an anchor is provided, it will replace the Pull Quote Anchor in the document flow.
+        1: `placement`
+        2: {f@times red}
+        3: This is a combination of float direction and anchor name.  It can also be empty.  The Pull Quote is displayed as a styled `aside` tag.  It can float ^^left^^ or ^^right^^.  The default is ^^right^^ if no direction is given.  If an anchor name is provided it may only contain ^^A-Za-z0-9_-^^.  The `aside` will be placed immediately following the rendered pull quote `content`, or, if an anchor is provided, it will replace the Pull Quote Anchor in the document flow.
         Examples: (^^left^^), (^^right funny-quote^^), (^^obama-quote^^), ().
 }(Summary of the ^Pull Quote Directive^)#pqd
 
 table-3{
     h:
-        3. Pull Quote Anchor - @pqa{name}
+        3: Pull Quote Anchor - @pqa{name}
     h:
-        1. Piece
-        2. Use Pressdown
-        3. Description
+        1: Component
+        2(no-word-wrap): Can Contain Pressdown
+        3: Description
+    c:
+        2: text-center
     r:
-        1. `name`
-        2.
-        3. The anchor name used in a ^Pull Quote Directive^ elsewhere.  The styled `aside` will be inserted into the document flow at the position of the directive.
+        1: `name`
+        2: {f@times red}
+        3: The anchor name used in a ^Pull Quote Directive^ elsewhere.  The styled `aside` will be inserted into the document flow at the position of the directive.
 }(Summary of the ^Pull Quote Anchor Directive^)#pqad
 
 
@@ -62,7 +101,7 @@ With {{ pressDown }} this is how you make an element with a specific class:
 {@pre-prettyprintplain
 this: @{@s-z I need to be a span with "z" class s@}
 
-becomes this: `<span class="z">I need to be a span with "z" class</span>`
+becomes this: ```<span class="z">I need to be a span with "z" class</span>```
 pre@}(no-strip-p-tags)
 
 Then you can use `.z` in your CSS files to do something cool.
@@ -147,88 +186,3 @@ figure{
   Then you can use `.z` in your CSS files to do something cool.}(The ^Classed Block Directive^ @{@tag-class content tag@})#CBD
 
 Now suppose you want to refer to this figure later or earlier in the document. {{ pressDown }} can create a link for you that will automatically reference the proper number of the figure, regardless of where, or what order, it was defined. Just use the name you provided in the ^Figure Directive^ and {{ pressDown }} will handle the rest. This magic is accomplished with the ^Figure Link Directive^: f{link text}(name) . The `name` must match the one in the Figure Directive. The `link text`, if defined, will be appended to the default link text of "Figure X". For example @f{Classed Block Directive}(CBD), would create a link that says "Figure 1: Classed Block Directive". If it were empty, the link would instead simply say "Figure 1".
-
-{break}
-
-### Pressdown markup
-
-```none
-@table-3{
-    h:
-        1. Header 1
-        2. Header 2
-        3. Header 3
-    r:
-        1. Row 1 Col 1
-        2. Row 1 Col 2
-        3. Row 1 Col 3
-    r:
-        1. Row 2 Col 1
-        3. Row 2 Cols 2 & 3
-    r:
-        2. Row 3 Cols 1 & 2
-        3. Row 3 Col 3
-    r:
-        3. Row 4 Cols 1 & 2 & 3
-    f:
-        1. Footer 1
-        2. Footer 2
-        3. Footer 3
-}(The Table Directive - @table-cols{content}(caption))#sample
-```
-
-### Becomes HTML
-
-```html
-table-3{
-    h:
-        1. Header 1
-        2. Header 2
-        3. Header 3
-    r:
-        1. Row 1 Col 1
-        2. Row 1 Col 2
-        3. Row 1 Col 3
-    r:
-        1. Row 2 Col 1
-        3. Row 2 Cols 2 & 3
-    r:
-        2. Row 3 Cols 1 & 2
-        3. Row 3 Col 3
-    r:
-        3. Row 4 Cols 1 & 2 & 3
-    f:
-        1. Footer 1
-        2. Footer 2
-        3. Footer 3
-}(The Table Directive - @table-cols{content}(caption))#sample
-```
-
-{break}
-
-### Which renders
-
-table-3{
-    h:
-        1. Header 1
-        2. Header 2
-        3. `Header 3`
-    r:
-        1. Row 1 Col 1
-        2. Row 1 Col 2
-        3. Row 1 Col 3
-    r:
-        1. Row 2 Col 1
-        3. Row 2 Cols 2 & 3
-    r:
-        2. Row 3 Cols 1 & 2
-        3. Row 3 Col 3
-    r:
-        3. Row 4 Cols 1 & 2 & 3
-    f:
-        1. Footer 1
-        2. Footer 2
-        3. Footer 3
-}(The Table Directive - @table-cols{content}(caption))#sample
-
-f{link test}(CBD)

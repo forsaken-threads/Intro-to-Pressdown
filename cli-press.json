@@ -3,10 +3,10 @@
     "filename" : "intro-to-pressdown",
     "ignore" : ["themes"],
     "press-variables": {
-        "cliPress": "{@s-a CLI Press s@}",
-        "pressDown": "{@s-a Pressdown s@}"
+        "cliPress": "{@s-a CLI Press s@}(-p)",
+        "pressDown": "{@s-a Pressdown s@}(-p)"
     },
     "simple-root-cover" : true,
     "theme" : "local",
-    "title" : "Intro to {@s-a Pressdown s@}"
+    "title" : "Intro to {@s-a Pressdown s@}(-p)"
 }
