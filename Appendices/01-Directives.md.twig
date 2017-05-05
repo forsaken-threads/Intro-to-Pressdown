@@ -1,4 +1,4 @@
-## Summary of {{ pressDown }} ^Directives^
+## Appendix I
 
 table-3{
     h:
@@ -34,13 +34,13 @@ table-3{
         2: @{@tag-class? content tag@}(options)?
         3: HTML block with tag and optional class
     r:
-        1: Alert
-        2: @alert{content}(icon)
-        3: Inset text box with a configurable Font Awesome icon
-    r:
         1: Pull Quote
         2: @pq{content}(float? anchor?)
         3: Aside with quoted phrase
+    r:
+        1: Alert
+        2: @alert{content}(icon)
+        3: Inset text box with a configurable Font Awesome icon
     r:
         1: Table
         2: @table-cols{content}(caption?)#anchor-name
@@ -49,6 +49,10 @@ table-3{
         1: Figure
         2: @figure{content}(caption?)#anchor-name
         3: Inset figure with caption
+    r:
+        1: Custom
+        2: @custom{content}(directive options?)
+        3: Custom directive defined in a theme or project configuration.
     r:
         3: **Post Directives**
     r:
@@ -73,4 +77,4 @@ table-3{
         1: Escaped Twig Expression
         2: @{@{ expression }}
         3: Prevents Twig parsing
-}({{ pressDown }} ^Directives^)#directives
+}(### {{ pressDown }} ^Directives^)#directives
