@@ -45,70 +45,74 @@ The first directive we'll take a look at is the ^Pull Quote Directive^ - @pq{con
 
 As you may have guessed, the component `content` should be the word or phrase you want to use.  The `float` option specifies which way the pull quote will float wherever it appears.  If not given, the default value is `right`.  The `anchor` option can be the link name of a ^Pull Quote Anchor Directive^ that indicates where in the document flow the pull quote should appear.  If it is not given, the pull quote will be anchored to wherever the original content is.
 
-To use the ^Pull Quote Directive^, simply enter it wherever the phrase would normally occur in the flow of the document.  The phrase will appear as normal in that location but also be displayed according to the `float` and `anchor` options.
+To use the ^Pull Quote Directive^, simply enter it wherever the phrase would normally occur in the flow of the document.  The phrase will appear as normal in that location but also be displayed according to the `float` and `anchor` options.  The example below shows how the pull quote on this page is created.
 
-alert{In the example below, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  You'll find more information about it below.}(info-circle)
+custom{
+They are often used to @pq{grab the reader and draw them in}(left) to a specific section, to prevent them from flipping past.
+}(code-block)
 
-{@pre-prettyprintplain
+The pull quote on the previous page was located next to the original text.  There's a pull quote on this page that is actually from a paragraph on the next page.  Here is how this was accomplished:
 
-@pq{ {@{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(beautiful)
+custom{
+@// Here it is in the document flow
+But as simple as the @^Classed Block Directive^ is, @pq{ {{ pressDown }} has an even better way}(right better-way) to create figures and captions.
 
-pre@}()
+@// And here is how it is anchored in place
+@pqa{better-way}
+}(code-block)
 
-table-3{
-    h:
-        3: Pull Quote - @pq{content}(placement)
+table-2{
     h:
         1: Component
-        2(no-word-wrap): Can Contain Pressdown
         3: Description
     c:
         2: text-center
     r:
         1: `content`
-        2: {f@check green}
-        3: This is what you want to appear, as is, within the normal flow of the document.
+        3: This is what you want to appear, as is, within the normal flow of the document.  It may contain Markdown and Pressdown.
     r:
-        1: `placement`
-        2: {f@times red}
-        3: This is a combination of float direction and anchor name.  It can also be empty.  The Pull Quote is displayed as a styled `aside` tag.  It can float ^^left^^ or ^^right^^.  The default is ^^right^^ if no direction is given.  If an anchor name is provided it may only contain ^^A-Za-z0-9_-^^.  The `aside` will be placed immediately following the rendered pull quote `content`, or, if an anchor is provided, it will replace the Pull Quote Anchor in the document flow.
-        Examples: (^^left^^), (^^right funny-quote^^), (^^obama-quote^^), ().
-}(Summary of the ^Pull Quote Directive^)#pqd
+        1: `float`
+        3: This can be ^^left^^ or ^^right^^ and indicates which direction the pull quote should float.  The default is ^^right^^ if no direction is given.
+    r:
+        1: `anchor`
+        3:  If an anchor name is provided it may only contain these characters: ^^A-Za-z0-9_-^^.  The pull quote will be placed immediately following the rendered pull quote `content`, or, if an anchor name is provided here, it will replace the linked ^Pull Quote Anchor Directive^ in the document flow.
+}(Summary of the ^Pull Quote Directive^ - @pq{content}(float? anchor?))#pqd
 
 table-3{
     h:
-        3: Pull Quote Anchor - @pqa{name}
-    h:
         1: Component
-        2(no-word-wrap): Can Contain Pressdown
-        3: Description
-    c:
-        2: text-center
+        2: Description
     r:
-        1: `name`
-        2: {f@times red}
-        3: The anchor name used in a ^Pull Quote Directive^ elsewhere.  The styled `aside` will be inserted into the document flow at the position of the directive.
-}(Summary of the ^Pull Quote Anchor Directive^)#pqad
+        1(no-wrap): `anchor-name`
+        2: The anchor name used in a ^Pull Quote Directive^ elsewhere.  The pull quote will be inserted into the document flow at the position of the directive.
+}(Summary of the ^Pull Quote Anchor Directive^ - @pqa{anchor-name})#pqad
 
 
 ### The ^Classed Block Directive^
+
+pqa{better-way}
 
 One main feature is the ^Classed Block Directive^ - @{@tag-class content tag@}.  This allows you to briefly create HTML blocks with a specific assigned class.  The `tag` can be replaced by a tag name or a one or two letter abbreviation that represents the following tags: ^^a^^, ^^b^^*lockquote*, ^^c^^*ode*, ^^f^^*igure*, ^^fig^^^^c^^*aption*, ^^d^^*iv*, ^^l^^*i*, ^^o^^*l*, ^^p^^, ^^pre^^, ^^s^^*pan*, and ^^u^^*l*.  The `class` can be replaced by a single class name or a series of class names separated by a `.`. You can also leave it empty and no class name will be applied to the block at all.  See Figure 1 below for an example.
 
 {@figure-
 With {{ pressDown }} this is how you make an element with a specific class:
 
-{@pre-prettyprintplain
-this: @{@s-z I need to be a span with "z" class s@}
+custom{
+@// this
+@{@s-z I need to be a span with "z" class s@}
 
-becomes this: ```<span class="z">I need to be a span with "z" class</span>```
-pre@}(no-strip-p-tags)
+@// becomes this
+&lt;span class="z">I need to be a span with "z" class</span&gt;
+}(code-block)
 
 Then you can use `.z` in your CSS files to do something cool.
 figure@}
-{@fc- Figure 1: The ^Classed Block Directive^ @{@x-c .+ x@} fc@}
+{@fc- Figure 1: The ^Classed Block Directive^ @{@tag-class? content tag@} fc@}(-p)
 
-You can nest classed blocks and use Markdown Extra within them! Below is how I created the above sample.  You'll see a Twig expression for the press variable `pressDown`. It itself evaluates to the classed block directive: @{@s-a Pressdown s@}.
+You can nest classed blocks and use Markdown within them! Below is how I created the above sample.  You'll see a Twig expression for the press variable `pressDown`. It itself evaluates to the classed block directive: @{@s-a Pressdown s@}.
+
+alert{In the example below, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  You'll find more information about it below.}(info-circle)
+
 
 {@pre-prettyprintplain
 @{@f-
@@ -149,7 +153,7 @@ f@}
 
 ### Figures and Captions
 
-If you were paying attention above, you noticed that Figure 1 uses classed blocks of the `f(igure)` and `f(ig)c(aption)` variety.  {{ cliPress }} automatically styles figures and captions to look like insets as the one above.  But as simple as the ^Classed Block Directive^ is, pq{ {{ pressDown }} has an even better way to create figures and captions.}(right far-away)  The ^Figure Directive^ - @{=fig-name .+ fig=}(caption)?.
+If you were paying attention above, you noticed that Figure 1 uses classed blocks of the `f(igure)` and `f(ig)c(aption)` variety.  {{ cliPress }} automatically styles figures and captions to look like insets as the one above.  But as simple as the ^Classed Block Directive^ is, pq{ {{ pressDown }} has an even better way to create figures and captions}(right better-way).  The ^Figure Directive^ - @{=fig-name .+ fig=}(caption)?.
 
 Let's break down what that does, and how {{ pressDown }} helps you with it.  The `.+` is the content that will go in the `figure` tag.  The `name` should be a unique name for the figure.  This name allows you to create a link to the figure from any file using the ^Figure Link Directive^.  Finally the `caption` is an optional caption tha will be added to the bottom of the figure, like the caption on the example above.  And here's the best part: {{ pressDown }} will automatically number your figures for you, and prefix your caption with "Figure X:".  Don't worry about renumbering figures.  It's handled.
 

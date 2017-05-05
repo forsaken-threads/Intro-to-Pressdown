@@ -1,4 +1,10 @@
 {
+    "custom-directives" : {
+        "code-block" : {
+            "tag" : "pre",
+            "class" : "prettyprintplain"
+        }
+    },
     "document-themes" : "themes",
     "filename" : "intro-to-pressdown",
     "ignore" : ["themes"],

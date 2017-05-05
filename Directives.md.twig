@@ -30,30 +30,30 @@ table-3{
     r:
         3: **Block Directives**
     r:
-        1: Pull Quote
-        2: @pq{content}(placement)
-        3: Aside with quoted phrase
+        1: Classed Block^
+        2: @{@tag-class? content tag@}(options)?
+        3: HTML block with tag and optional class
     r:
         1: Alert
         2: @alert{content}(icon)
         3: Inset text box with a configurable Font Awesome icon
     r:
+        1: Pull Quote
+        2: @pq{content}(float? anchor?)
+        3: Aside with quoted phrase
+    r:
         1: Table
-        2: @table-cols{content}(caption)#anchor-name
+        2: @table-cols{content}(caption?)#anchor-name
         3: Simple table with caption
     r:
         1: Figure
-        2: @figure{content}(caption)#anchor-name
+        2: @figure{content}(caption?)#anchor-name
         3: Inset figure with caption
-    r:
-        1: Classed Block^
-        2: @{@tag-class content tag@}
-        3: HTML block with tag and class
     r:
         3: **Post Directives**
     r:
         1: Figure Link
-        2: @f{content}(link)
+        2: @f{content?}(link)
         3: Link to named figure
     r:
         1: Pull Quote Anchor
@@ -61,13 +61,13 @@ table-3{
         3: Location for pull quote defined elsewhere
     r:
         1: Table Link
-        2: @t{content}(link)
+        2: @t{content?}(link)
         3: Link to named table
     r:
         3: **Final Directives**
     r:
         1: Escaped Code Blocks
-        2: {@c-pressdown {@s-pd-literal @``` s@} c@}
+        2: {@c-pressdown {@s-pd-literal @``` s@}(-p) c@}(-p)
         3: Prevents Markdown parsing
     r:
         1: Escaped Twig Expression
