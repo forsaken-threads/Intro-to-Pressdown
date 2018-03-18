@@ -1,12 +1,13 @@
-## Appendix I
+## Appendix I: {{ pressDown }} Directives Quick Reference
 
 table-3{
+    c:
+        1: no-wrap
+        2: no-wrap
     h:
         1: Directive Name
         2: Directive Format
         3: Purpose
-    r:
-        3: **Pre Directives**
     r:
         1: Keyword One
         2: @^content^
@@ -27,48 +28,85 @@ table-3{
         1: Page Break
         2: @{break}
         3: Force page break
+}(^Pre Directives^)#qr-pre-directives
+
+table-3{
+    c:
+        1: no-wrap
+    h:
+        1: Directive Name
+        2: Directive Format
+        3: Purpose
     r:
-        3: **Block Directives**
+        1: t{Classed Block}(cbd)
+        2: custom{
+        @{@tag-class?
+        content
+        tag@}(options)?
+        }(code-block)
+        3: HTML block with tag and optional class.  More than one class may be specified by separating them with dots.  The `options` component sends processing instructions to the Pressdown parser.  A list of options can be found t{here}(cbd-options-summary).
     r:
-        1: Classed Block^
-        2: @{@tag-class? content tag@}(options)?
-        3: HTML block with tag and optional class
-    r:
-        1: Pull Quote
-        2: @pq{content}(float? anchor?)
-        3: Aside with quoted phrase
+        1: t{Pull Quote}(pqd)
+        2: custom{
+        @pq{content}(float? anchor?)
+        }(code-block)
+        3: Aside with quoted phrase. Optional components `float` and `anchor` designate how and where to place the pull quote.
     r:
         1: Alert
-        2: @alert{content}(icon)
-        3: Inset text box with a configurable Font Awesome icon
+        2: custom{
+        @alert{content}(icon class?)
+        }(code-block)
+        3: Inset text box with a configurable Font Awesome icon and optional class
     r:
         1: Table
-        2: @table-cols{content}(caption?)#anchor-name
-        3: Simple table with caption
+        2: custom-1{
+        @table-cols{
+        content
+        }(caption?)#anchor-name
+        }(code-block)-1
+        3: Simple table with optional caption
     r:
-        1: Figure
-        2: @figure{content}(caption?)#anchor-name
-        3: Inset figure with caption
+        1: t{Figure}(fd)
+        2: custom-1{
+        @figure{
+        content
+        }(caption?)#anchor-name
+        }(code-block)-1
+        3: Inset figure with optional caption
     r:
         1: Custom
-        2: @custom{content}(directive options?)
-        3: Custom directive defined in a theme or project configuration.
+        2: custom-1{
+        @custom-level?{
+        content
+        }(directive options?)-level?
+        }(code-block)-1
+        3: Custom directive defined in a theme or project configuration.  They can be nested with the use of the optional component `-level` where `level` is a single digit, so up to ten directives can be nested.
+}(^Block Directives^)#qr-block-directives
+
+table-3{
+    h:
+        1: Directive Name
+        2: Directive Format
+        3: Purpose
     r:
-        3: **Post Directives**
+        1: t{Figure Link}(fld)
+        2: @f{caption?}(link)
+        3: Link to named figure with optional replacement caption
     r:
-        1: Figure Link
-        2: @f{content?}(link)
-        3: Link to named figure
-    r:
-        1: Pull Quote Anchor
+        1: t{Pull Quote Anchor}(pqad)
         2: @pqa{name}
         3: Location for pull quote defined elsewhere
     r:
         1: Table Link
-        2: @t{content?}(link)
-        3: Link to named table
-    r:
-        3: **Final Directives**
+        2: @t{caption?}(link)
+        3: Link to named table with optional replacement caption
+}(^Post Directives^)#qr-post-directives
+
+table-3{
+    h:
+        1: Directive Name
+        2: Directive Format
+        3: Purpose
     r:
         1: Escaped Code Blocks
         2: {@c-pressdown {@s-pd-literal @``` s@}(-p) c@}(-p)
@@ -77,4 +115,4 @@ table-3{
         1: Escaped Twig Expression
         2: @{@{ expression }}
         3: Prevents Twig parsing
-}(### {{ pressDown }} ^Directives^)#directives
+}(^Final Directives^)#qr-final-directives

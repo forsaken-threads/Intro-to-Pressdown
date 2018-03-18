@@ -7,7 +7,7 @@
     },
     "document-themes" : "themes",
     "filename" : "intro-to-pressdown",
-    "ignore" : ["themes", "test.html"],
+    "ignore" : ["themes", "readme.md"],
     "press-variables": {
         "cbdTags" : "^^a^^, ^^b^^*lockquote*, ^^c^^*ode*, ^^f^^*igure*, ^^f^^*ig*^^c^^*aption*, ^^d^^*iv*, ^^l^^*i*, ^^o^^*l*, ^^p^^, ^^pre^^, ^^s^^*pan*, and ^^u^^*l*",
         "cliPress": "{@s-a CLI Press s@}(-p)",

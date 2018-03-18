@@ -1,4 +1,4 @@
-## Appendix II
+## Appendix II: Options for {{ pressDown }} Directives
 
 table-2{
     h:
@@ -16,4 +16,19 @@ table-2{
     r:
         1: `-p`
         2: This will strip all Markdown `p` tags from the block using this regex: `/<\/?p>/`.
-}(### Options for the ^Classed Block Directive^)#options-summary
+}(Options for the ^Classed Block Directive^)#cbd-options-summary
+
+table-2{
+    h:
+        1: Option
+        2: Description
+    r:
+        1: `-final`
+        2: This will prevent further processing of the block.  Some Pressdown processing will occur even with this option.
+    r:
+        1: `-p` and `+p`
+        2: This will strip/not strip all Markdown `p` tags from the block using this regex: `/<\/?p>/`.
+    r:
+        1: `-p2br` and `+p2br`
+        2: This will convert/not convert all Markdown `p` tags in the block to `br` tags.
+}(Options for the ^Custom Directive^)#custom-options-summary

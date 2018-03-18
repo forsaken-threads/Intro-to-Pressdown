@@ -2,7 +2,7 @@
 
 {{ pressDown }} is an extension of Markdown Extra that adds special processing directives to handle the specific needs of documentation tasks.  Some of the directives help reduce markup, and others allow for easily escaping Twig, Markdown, and {{ pressDown }} directives.  Most of all, though, pq{ {{ pressDown }} has lots of directives to make building your documentation easy and to make it beautiful.}(left beautiful)
 
-This document provides detailed information and samples for all available {{ pressDown }} directives.  You will see generalized versions of each directive as well as examples taken directly from the markup used to create this document.  To make these easier to understand, these directives will be processed through a syntax highlighter.  See f{ {{ pressDown }} Syntax Highlighting}(syntax) for information on how to make sense of them.
+This document provides detailed information and samples for all available {{ pressDown }} directives.  You will see generalized versions of each directive as well as examples taken directly from the markup used to create this document.  To make these easier to understand, these directives will be processed through a syntax highlighter.  See t{ {{ pressDown }} Syntax Highlighting}(pressdown-syntax-highlighting) for information on how to make sense of them.
 
 figure{
 Here is the ^Figure Directive^ in an abstract version as well as in a real-world version:
@@ -15,7 +15,7 @@ Here is the ^Figure Directive^ in an abstract version as well as in a real-world
 Look I can use \*Markdown\* in here
 
 Wow! I can use @@^Pressdown^, too!
-}(My caption can use \*Markdown\* and @@^Pressdown^)#anchor
+}(My caption can use \*Markdown\* and @@^Pressdown^)#anchor-name
 
 pre@}
 
@@ -55,7 +55,7 @@ The pull quote on the previous page was located next to the original text.  Ther
 
 custom{
 @// Here it is in the document flow
-But as simple as the @^Classed Block Directive^ is, @pq{ {{ pressDown }} has an even better way}(right better-way) to create figures and captions.
+But as simple as the @^Classed Block Directive^ is, @pq{ {@{ pressDown }} has an even better way}(right better-way) to create figures and captions.
 
 @// And here is how it is anchored in place
 @pqa{better-way}
@@ -92,7 +92,7 @@ table-3{
 
 pqa{better-way}
 
-One main feature is the ^Classed Block Directive^ - @{@tag-class content tag@}(options -nw)?.  This allows you to briefly create HTML blocks with a specific assigned class.  The `tag` can be replaced by a tag name or a one or two letter abbreviation that represents the following tags: {{ cbdTags }}.  The `class` can be replaced by a single class name or a series of class names separated by a dot. You can also leave it empty and no class name will be applied to the block at all.  The optional component `options` allows you to send special instructions to the Pressdown parser.  See t{}(cbd) for details.  Figure A below shows a basic example.
+One main feature is the ^Classed Block Directive^ - @{@tag-class content tag@}(options -nw)?.  This allows you to briefly create HTML blocks with a specific assigned class.  The `tag` can be replaced by a tag name or a one or two letter abbreviation that represents the following tags: {{ cbdTags }}.  The `class` can be replaced by a single class name or a series of class names separated by a dot. You can also leave it empty and no class name will be applied to the block at all.  The optional component `options` allows you to send special instructions to the Pressdown parser.  See t{here}(cbd) for details.  Figure A below shows a basic example.
 
 {@figure-
 With {{ pressDown }} this is how you make an element with a specific class:
@@ -113,8 +113,8 @@ You can nest classed blocks and use Markdown and Pressdown within them!  (For no
 
 alert{In the example markup below, `{@{ pressDown }}` is a Twig expression for the press variable `pressDown`.  Press variables aren't covered in this book, but you can find more information about them [online](https://github.com/blazing-threads/cli-press).  For now, just know that the press variable is a shortcut that itself translates into a ^Classed Block Directive^.  That directive looks like this: @{@s-a Pressdown s@}(-p-nw).  The ^Custom Directive^ will be covered a little later.}(info-circle)
 
-custom{
-@{@f-
+custom-1{
+@{@figure-
 With {@{ pressDown }} this is how you make an element with a specific class:
 
 @custom{
@@ -126,9 +126,9 @@ With {@{ pressDown }} this is how you make an element with a specific class:
 }(code-block)
 
 Then you can use `.z` in your CSS files to do something cool.
-f@}
+figure@}
 @{@fc- Figure A: The @^Classed Block Directive^ @{@tag-class content tag@} fc@}
-}(code-block -final)
+}(code-block -final)-1
 
 After Twig, {{ pressDown }}, and Markdown parsing, the final HTML markup looks like this:
 
@@ -175,27 +175,27 @@ If you were paying attention above, you noticed that Figure A uses classed block
 
 Introducing the ^Figure Directive^ - @figure{content}(caption?)#anchor-name
 
-Let's break down what that does, and how {{ pressDown }} helps you with it.  The `content` is what will go in the `figure` tag.  The `anchor-name` should be a unique name for the figure.  This name allows you to create a link to the figure from any file using the ^Figure Link Directive^.  Finally the `caption` is an optional caption tha will be added to the bottom of the figure, like the caption in Figure A.  And here's the best part: {{ pressDown }} will automatically number your figures for you, and prefix your caption with "Figure X:".  Don't worry about renumbering figures.  It's handled.
+Let's break down what that does, and how {{ pressDown }} helps you with it.  The `content` is what will go in the `figure` tag.  The `anchor-name` should be a unique name for the figure.  This name allows you to create a link to the figure from any file using the ^Figure Link Directive^.  Finally the `caption` is an optional caption that will be added to the bottom of the figure, like the caption in Figure A.  And here's the best part: {{ pressDown }} will automatically number your figures for you, and prefix your caption with "Figure X:".  Don't worry about renumbering figures.  It's handled.
 
-To see the directive in action, here's an example of how to create Figure A using the ^Figure Directive^.
+To see the directive in action, here's an example of how to create Figure A from the section on the ^Classed Block Directive^ using the ^Figure Directive^.
 
 custom-1{
 @figure{
 With {@{ pressDown }} this is how you make an element with a specific class:
 
-@custom{
+@custom-2{
 @// this:
 @{@s-z I need to be a span with "z" class s@}
 
 @// becomes this:
 &lt;span class="z"&gt;I need to be a span with "z" class&lt;/span&gt;
-}(code-block)
+}(code-block)-2
 
 Then you can use `.z` in your CSS files to do something cool.
 }(The ^Classed Block Directive^ @{@tag-class? content tag@}(options)?)#CBD
 }(code-block -p2br)-1
 
-And here's that {{ pressDown }} in action:
+And here's that Pressdown in action:
 
 figure{
 With {{ pressDown }} this is how you make an element with a specific class:
@@ -211,4 +211,31 @@ custom{
 Then you can use `.z` in your CSS files to do something cool.
 }(The ^Classed Block Directive^ @{@tag-class? content tag@}(options)?)#CBD
 
-Now suppose you want to refer to this figure later or earlier in the document. {{ pressDown }} can create a link for you that will automatically reference the proper number of the figure, regardless of where, or in what order, it was defined. Just use the name you provided in the ^Figure Directive^ and {{ pressDown }} will handle the rest. This magic is accomplished with the ^Figure Link Directive^: @f{caption}(link) . The `link` must match the anchor name in the ^Figure Directive^. The `caption`, if defined, will be appended to the defaultof "Figure X". For example @f{Classed Block Directive}(CBD), would create a link that says "Figure 1: Classed Block Directive". If it were empty, the link would instead simply say "Figure 1".
+Now suppose you want to refer to this figure later or earlier in the document. {{ pressDown }} can create a link for you that will automatically reference the proper number of the figure, regardless of where, or in what order, it was defined. Just use the name you provided in the ^Figure Directive^ and {{ pressDown }} will handle the rest. This magic is accomplished with the ^Figure Link Directive^: @f{caption?}(link) . The `link` must match the anchor name in the ^Figure Directive^. The `caption`, if defined, will replace the default caption. For example @f{Classed Block Directive}(CBD), would create a link labeled "Classed Block Directive". If it were empty, the link would instead match the default caption, "The ^Classed Block Directive^ @{@tag-class? content tag@}(options)?".
+
+table-2{
+    h:
+        1: Component
+        2: Description
+    r:
+        1: `content`
+        2: The content of the figure can be Markdown and Pressdown.  In theory, you could even put a figure within a figure, but we would not recommend it.
+    r:
+        1: `caption`
+        2: The optional caption can be Markdown and Pressdown.  If provided, the caption will be prefixed with 'Figure X: ' where 'X' is an automatically tracked number.  If empty, there will be no caption at all.
+    r:
+        1(no-wrap): `anchor-name`
+        2: The anchor name must be unique across all ^Figure Directives^ and can be comprised of the following characters: ^^A-Za-z0-9_-^^.  It can be used in the ^Figure Link Directive^ to create clickable links to the figure.
+}(Summary of the ^Figure Directive^ - @figure{content}(caption?)#anchor-name)#fd
+
+table-2{
+    h:
+        1: Component
+        2: Description
+    r:
+        1: `caption`
+        2: If the caption isn't provided, the link text will default to the caption of the linked figure.  If provided, it will be used in place of the default.
+    r:
+        1: `link`
+        2: The link must be defined as an anchor name in a ^Figure Directive^ elsewhere.
+}(Summary of the ^Figure Link Directive^ - @f{caption?}(link))#fld
